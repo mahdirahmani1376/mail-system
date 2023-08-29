@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title' , 'Send Email')
+@section('title' , 'Send SMS')
 
 
 @section('content')
@@ -8,7 +8,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                @lang('notification.send_email')
+                @lang('notification.send_sms')
             </div>
             <div class="card-body">
                 @if (session('success'))
@@ -21,23 +21,19 @@
                     {{session('failed')}}
                 </div>
                 @endif
-            <form action="{{route('notification.send.email')}}" method="POST" >
+            <form action="{{route('notification.send.sms')}}" method="POST" >
                 @csrf
                     <div class="form-group ">
                         <label for="user">@lang('notification.users')</label>
                         <select name="user"  class="form-control" id="user">
                             @foreach ($users as $user)
-                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            <option {{old('user') == $user->id ? 'selected' : '' }}  value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="email_type">@lang('notification.email_type')</label>
-                        <select name="email_type"  class="form-control" id="email_type">
-                            @foreach ($emailTypes as $emailType)
-                            	<option value="{{$emailType->value}}">{{ \App\Enums\EmailTypeEnum::toString($emailType->value) }}</option>
-                            @endforeach
-                        </select>
+                        <label for="text">@lang('notification.sms_text')</label>
+                    <textarea name="text" id="text"  class="form-control" rows="3">{{old('text')}}</textarea>
                     </div>
                     @if ($errors->any())
                     <ul>

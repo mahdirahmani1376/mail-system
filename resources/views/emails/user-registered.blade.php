@@ -1,5 +1,8 @@
 @component('mail::message')
-# Introduction
+# User Registered
+ 
+- list1
+- list2
 
 The body of your message.
 

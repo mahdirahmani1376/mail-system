@@ -19,6 +19,7 @@ Route::get('/',function (){
 	return view('home');
 })->name('notification.send.email');
 
-Route::prefix('/notifications')->controller(NotificationController::class)->group(function (){
-   Route::get('/send-email','email')->name('notification.form.email');
+Route::prefix('/notifications/')->controller(NotificationController::class)->group(function (){
+   Route::get('/index ','email')->name('notification.form.email');
+   Route::post('/send-email','sendEmail')->name('notification.send.email');
 });

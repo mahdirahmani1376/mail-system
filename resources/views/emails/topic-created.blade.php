@@ -1,8 +1,4 @@
 <div>
-    Topic Was Created
-
-    {{ $firstName }}
-    {{ $lastName }}
-
-    <button type="submit">Go To Website</button>
+    <h1>topic created</h1>
+    <button type="submit">Go to website</button>
 </div>
